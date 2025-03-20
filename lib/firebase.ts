@@ -8,11 +8,11 @@ const firebaseConfig = {
   apiKey: "AIzaSyAyoX1YqAdqHuIvSoj0Yw_FYnhCBv-KfEA",
   authDomain: "fht-sistema.firebaseapp.com",
   projectId: "fht-sistema",
-  storageBucket: "fht-sistema.firebasestorage.app",
+  storageBucket: "fht-sistema.appspot.com", // ✅ Corrigido aqui
   messagingSenderId: "583837273524",
   appId: "1:583837273524:web:1583addfce581e61ac76e1",
   measurementId: "G-6FJ2H3G32N"
-};
+}
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
@@ -21,4 +21,3 @@ const db = getFirestore(app)
 const storage = getStorage(app)
 
 export { app, auth, db, storage }
-
