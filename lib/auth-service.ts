@@ -18,6 +18,10 @@ export interface UserData {
   userType: UserType
   createdAt: Date
   updatedAt: Date
+  specialty?: string
+  hourlyRate?: number
+  address?: string
+  crm?: string
 }
 
 // Register a new user
@@ -26,6 +30,7 @@ export const registerUser = async (
   password: string,
   name: string,
   userType: UserType,
+  extraData: Partial<UserData> = {}
 ): Promise<UserData> => {
   try {
     // Create user in Firebase Auth
@@ -43,6 +48,7 @@ export const registerUser = async (
       userType,
       createdAt: new Date(),
       updatedAt: new Date(),
+      ...extraData,
     }
 
     await setDoc(doc(db, "users", user.uid), {
@@ -106,4 +112,3 @@ export const getCurrentUserData = async (): Promise<UserData | null> => {
     throw error
   }
 }
-
