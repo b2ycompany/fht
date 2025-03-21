@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -12,12 +11,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useToast } from "@/hooks/use-toast"
 import { registerUser } from "@/lib/auth-service"
 import { FirebaseError } from "firebase/app"
+import { UserType } from "@/lib/auth-service"
 
 export default function RegisterPage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [userType, setUserType] = useState<UserType>("doctor")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
@@ -37,14 +38,14 @@ export default function RegisterPage() {
     setIsLoading(true)
 
     try {
-      await registerUser(email, password, name, "doctor")
+      await registerUser(email, password, name, userType)
 
       toast({
         title: "Cadastro realizado com sucesso",
-        description: "Você será redirecionado para completar seu perfil.",
+        description: userType === "doctor" ? "Você será redirecionado para completar seu perfil médico." : "Você será redirecionado para completar o perfil do hospital.",
       })
 
-      router.push("/dashboard/profile")
+      router.push(userType === "doctor" ? "/dashboard/profile" : "/dashboard/hospital")
     } catch (error) {
       console.error("Registration error:", error)
 
@@ -79,7 +80,7 @@ export default function RegisterPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Criar conta</CardTitle>
-          <CardDescription>Preencha os dados abaixo para criar sua conta de médico</CardDescription>
+          <CardDescription>Preencha os dados abaixo para criar sua conta</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -87,7 +88,7 @@ export default function RegisterPage() {
               <Label htmlFor="name">Nome completo</Label>
               <Input
                 id="name"
-                placeholder="Dr. João Silva"
+                placeholder="Ex: Dr. João Silva ou Hospital Saúde"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -124,6 +125,19 @@ export default function RegisterPage() {
                 required
               />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="userType">Tipo de Conta</Label>
+              <select
+                id="userType"
+                value={userType}
+                onChange={(e) => setUserType(e.target.value as UserType)}
+                className="w-full border border-gray-300 rounded-md p-2"
+                required
+              >
+                <option value="doctor">Médico</option>
+                <option value="hospital">Hospital</option>
+              </select>
+            </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={isLoading}>
@@ -141,4 +155,3 @@ export default function RegisterPage() {
     </div>
   )
 }
-
