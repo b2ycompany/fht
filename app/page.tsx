@@ -7,7 +7,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-primary">Plantão Médico</h1>
+          <h1 className="text-2xl font-bold text-primary">FHT Sistema de Gestão Medica e Hospitalar</h1>
           <div className="flex gap-4">
             <Link href="/login">
               <Button variant="outline">Entrar</Button>
@@ -23,7 +23,7 @@ export default function Home() {
         <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">
-              <h2 className="text-4xl font-bold mb-4">Conectando médicos e oportunidades de plantão</h2>
+              <h2 className="text-4xl font-bold mb-4">Conectando e Fazendo a gestão de médicos e oportunidades</h2>
               <p className="text-xl mb-8">
                 Cadastre sua disponibilidade, especialidades e valor hora para receber propostas de trabalho compatíveis
                 com seu perfil.
@@ -77,7 +77,7 @@ export default function Home() {
 
       <footer className="bg-gray-100 py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>© 2025 Sistema Plantão Médico. Todos os direitos reservados.</p>
+          <p>© 2025 Sistema de Gestão Hospitalar e Plantão Médico. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>

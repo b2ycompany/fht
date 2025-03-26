@@ -8,8 +8,8 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Sistema Plantão Médico",
-  description: "Conectando médicos e oportunidades de plantão",
+  title: "FHT Sistema de Gestão Medica e Hospitalar",
+  description: "Conectando e Fazendo a gestão de médicos e oportunidades ",
     generator: 'v0.dev'
 }
 
