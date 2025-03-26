@@ -17,3 +17,5 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 
 export const auth = getAuth(app)
 export const db = getFirestore(app)
+
+console.log("API Key: ", process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
